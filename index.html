@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%;height:566px;text-align:center"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+var xAxisData = ["2017年9月",
+    "2017年10月",
+    "2017年11月",
+    "2017年12月",
+    "2018年1月",
+    "2018年2月",
+    "2018年3月",
+    "2018年4月",
+    "2018年5月",
+    "2018年6月",
+    "2018年7月",
+    "2018年8月",
+    "2018年9月",
+    "2018年10月",
+    "2018年11月",
+    "2018年12月",
+    "2019年1月",
+    "2019年2月",
+    "2019年3月",
+    "2019年4月",
+    "2019年5月",
+    "2019年6月",
+];
+
+option = {
+     title: {
+        text: '小红书平台：完美日记每月声量与相关笔记数',
+        subtext: 'Number of monthly discussions and related notes about a cosmetics brand called “PERFECT DIARY”',
+        x: 'center',
+        y: '90',
+        textStyle:
+        {fontSize:20,
+        fontWeight:'bold',
+        fontFamily:'Microsoft YaHei',
+        color:'#ffffff'
+        },
+        subtextStyle:
+        {
+            fontStyle:'italic',
+			fontSize:10,
+			color:'#BEBEBE'
+        }
+    },
+    grid:{
+                    x:70,
+                    y:150,
+                    x2:70,
+                    y2:60,
+                    borderWidth:0
+                },
+
+    xAxis: [{
+        position:'top',
+        show: false,
+        data: xAxisData
+    }, {
+        position:'bottom',
+        show: false,
+        data: xAxisData
+    }],
+    tooltip: {
+        trigger: 'axis',
+        backgroundColor:'rgba(255,255,255,0.1)',
+        formatter: '{a0}:{c0}百万 <br/>{a1}:{c1}条',
+        axisPointer: {
+            type: 'shadow',
+            label: {
+                show: true,
+                backgroundColor: '#7B7DDC'
+            }
+        }
+    },
+    visualMap: {
+        show: false,
+        min: 0,
+        max: 25,
+        dimension: 0,
+        inRange: {
+            color: ['#4a657a', '#308e92', '#b1cfa5', '#f5d69f', '#f5898b', '#ef5055']
+        }
+    },
+    yAxis: [{
+            max: 4,
+            name:"单位：百万             ",
+           nameTextStyle:{
+                show: true,
+                color: '#4a657a',
+            },
+            inverse: true,
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                show: true,
+                color: '#4a657a',
+            },
+            axisLine: {
+                show: false
+            }
+            
+        },
+        {
+            max: 25000,
+            name:"                       单位：条",
+            nameTextStyle:{
+                show: true,
+                color: '#4a657a',
+            },
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#4a657a'
+                }
+            },
+            splitLine: {
+                show: false,
+                lineStyle: {
+                    color: '#08263f'
+                }
+            },
+            axisTick: {
+                show: false
+            }
+        },
+
+    ],
+    series: [{
+        name: '完美日记每月声量',
+        type: 'bar',
+        xAxisIndex: '0',
+        yAxisIndex: '0',
+        data: [0,
+            0.125,
+            0.2,
+            0.29,
+            0.9,
+            1.01,
+            1.255,
+            3.59,
+            1.2,
+            1.26,
+            1.65,
+            2,
+            1.4,
+            1.17,
+            1.16,
+            1.06,
+            0.99,
+            1.44,
+            1.65,
+            1.45,
+            0.8,
+            0.75
+
+        ],
+        z: 1,
+        itemStyle: {
+            normal: {
+                opacity: 0.2,
+                barBorderRadius: 5,
+                shadowBlur: 3,
+                shadowColor: '#111'
+            }
+        }
+    },  {
+        name: '与完美日记相关的笔记数',
+        type: 'bar',
+        yAxisIndex: '1',
+        data: [0,
+            41,
+            50,
+            83,
+            900,
+            765,
+            726,
+            1437,
+            1468,
+            1862,
+            2279,
+            1911,
+            2459,
+            2675,
+            3274,
+            3217,
+            3490,
+            3500,
+            4666,
+            4162,
+            1446,
+            3490
+        ],
+        xAxisIndex: 1,
+        z: 3,
+        itemStyle: {
+            normal: {
+                barBorderRadius: 5
+            }
+        }
+    }],
+    animationEasing: 'elasticOut',
+    animationEasingUpdate: 'elasticOut',
+};
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
